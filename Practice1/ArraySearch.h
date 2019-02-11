@@ -12,7 +12,7 @@ public:
 	void Add(T x);
 	void Remove(int pos);
 	int LinearSearch(T x);
-	int BareerSearch(T x);
+	int BarrierSearch(T x);
 	int BinarySearch(T x);
 	int BinarySearch_GoldenRatio(T x);
 };
@@ -81,9 +81,15 @@ inline int ArraySearch<T>::LinearSearch(T x)
 }
 
 template<typename T>
-inline int ArraySearch<T>::BareerSearch(T x)
+inline int ArraySearch<T>::BarrierSearch(T x)
 {
-	return 0;
+	Add(x);
+	i = 0;
+	while (m[i] != x)
+		i++;
+	if (i != size)
+		return i;
+	else return -1;
 }
 
 template<typename T>
