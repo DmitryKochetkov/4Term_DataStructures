@@ -258,6 +258,12 @@ namespace Practice1 {
 
 		}
 #pragma endregion
+		private: System::Void DataRefresh()
+		{
+			listBox1->Items->Clear();
+			
+		}
+
 	private: System::Void ButtonAdd_Click(System::Object^  sender, System::EventArgs^  e) {
 		int x = rand() % 100;
 		arr->Add(x);
@@ -283,6 +289,9 @@ private: System::Void ButtonBarrierSearch_Click(System::Object^  sender, System:
 private: System::Void ButtonBinarySearch_Click(System::Object^  sender, System::EventArgs^  e) {
 	int x;
 	Int32::TryParse(textBox1->Text, x);
+	System::Windows::Forms::DialogResult result = MessageBox::Show("Warning: array will be sorted", "Binary Search", MessageBoxButtons::OKCancel);
+	if (result == System::Windows::Forms::DialogResult::Cancel)
+		return;
 	if (arr->BinarySearch(x) == -1)
 		MessageBox::Show("Element does not exist", "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
 	else MessageBox::Show("Position: " + arr->BinarySearch(x).ToString(), "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
@@ -290,6 +299,9 @@ private: System::Void ButtonBinarySearch_Click(System::Object^  sender, System::
 private: System::Void ButtonGoldenRatioSearch_Click(System::Object^  sender, System::EventArgs^  e) {
 	int x;
 	Int32::TryParse(textBox1->Text, x);
+	System::Windows::Forms::DialogResult result = MessageBox::Show("Warning: array will be sorted", "Binary Search", MessageBoxButtons::OKCancel);
+	if (result == System::Windows::Forms::DialogResult::Cancel)
+		return;
 	if (arr->BinarySearch_GoldenRatio(x) == -1)
 		MessageBox::Show("Element does not exist", "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
 	else MessageBox::Show("Position: " + arr->BinarySearch_GoldenRatio(x).ToString(), "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
