@@ -23,12 +23,13 @@ public:
 template<typename T>
 inline void ArraySearch<T>::quicksort(int l, int r)
 {
-	int i = l; int j = r;
-	int mid = m[(l + r) / 2];
+	int i = l;
+	int j = r;
+	int mid = m[(l + r) / 2 ];
 
 	do {
 		while (m[i] < mid) i++;
-		while (m[i] > mid) j++;
+		while (m[j] > mid) j--;
 
 		if (i <= j) {
 			if (m[i] > m[j])
@@ -37,6 +38,8 @@ inline void ArraySearch<T>::quicksort(int l, int r)
 				m[i] = m[j];
 				m[j] = temp;
 			}
+			i++;
+			j--;
 		}
 	} while (i <= j);
 
