@@ -1,5 +1,6 @@
 #pragma once
-template <typename T>
+#include <math.h>
+template <typename T> 
 ref class ArraySearch
 {
 private:
@@ -133,12 +134,33 @@ inline int ArraySearch<T>::BinarySearch(T x)
 	int left = 0;
 	int right = size;
 	int mid;
-	return 0;
+	while (left <= right)
+	{
+		mid = left + (right - left) / 2;
+		if (x < m[mid])
+			right = mid - 1;
+		else if (x > m[mid])
+			left = mid + 1;
+		else return mid;
+	}
+	return -1;
 }
 
 template<typename T>
 inline int ArraySearch<T>::BinarySearch_GoldenRatio(T x)
 {
 	Sort();
-	return 0;
+	int left = 0;
+	int right = size;
+	int mid;
+	while (left <= right)
+	{
+		mid = round((2 / (sqrt(5) + 1))*(right - left));
+		if (x < m[mid])
+			right = mid - 1;
+		else if (x > m[mid])
+			left = mid + 1;
+		else return mid;
+	}
+	return -1;
 }
