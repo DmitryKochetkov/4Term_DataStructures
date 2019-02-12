@@ -23,7 +23,7 @@ template<typename T>
 inline void ArraySearch<T>::quicksort(int l, int r)
 {
 	int i = l; int j = r;
-	int pivot = m[(l + r) / 2];
+	int mid = m[(l + r) / 2];
 
 	do {
 		while (m[i] < mid) i++;
@@ -40,9 +40,9 @@ inline void ArraySearch<T>::quicksort(int l, int r)
 	} while (i <= j);
 
 	if (i < r)
-		quicksort(m[i], i, r);
+		quicksort(i, r);
 	if (l < j)
-		quicksort(m[i], l, j);
+		quicksort(l, j);
 }
 
 template<typename T>
@@ -102,7 +102,7 @@ inline void ArraySearch<T>::Remove(int pos)
 template<typename T>
 inline void ArraySearch<T>::Sort()
 {
-	quicksort(0, n - 1);
+	quicksort(0, size - 1);
 }
 
 template<typename T>
