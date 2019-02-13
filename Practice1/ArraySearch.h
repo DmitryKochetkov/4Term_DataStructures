@@ -125,9 +125,16 @@ inline int ArraySearch<T>::BarrierSearch(T x)
 	int i = 0;
 	while (m[i] != x)
 		i++;
-	if (i != size)
+	if (i != size - 1)
+	{
+		Remove(size - 1);
 		return i;
-	else return -1;
+	}
+	else
+	{
+		Remove(size - 1);
+		return -1;
+	}
 }
 
 template<typename T>
