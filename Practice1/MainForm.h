@@ -330,7 +330,7 @@ private: System::Void ButtonGoldenRatioSearch_Click(System::Object^  sender, Sys
 	}
 }
 private: System::Void ButtonAnalyze_Click(System::Object^  sender, System::EventArgs^  e) {
-	AnalysisForm^ form = gcnew AnalysisForm();
+	AnalysisForm^ form = gcnew AnalysisForm(this);
 	this->Hide();
 	form->Show();
 }

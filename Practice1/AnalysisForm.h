@@ -1,4 +1,5 @@
 #pragma once
+#include <cstdlib>
 #include "ArraySearch.h"
 
 namespace Practice1 {
@@ -16,9 +17,11 @@ namespace Practice1 {
 	/// </summary>
 	public ref class AnalysisForm : public System::Windows::Forms::Form
 	{
+	private: Form^ source;
 	public:
-		AnalysisForm(void)
+		AnalysisForm(Form^ s)
 		{
+			source = s;
 			InitializeComponent();
 			//
 			//TODO: добавьте код конструктора
@@ -128,35 +131,39 @@ namespace Practice1 {
 		}
 #pragma endregion
 	private: System::Void Start_Analysis_Click(System::Object^  sender, System::EventArgs^  e) {
+		if (textBox_Amount->Text == "")
+			return;
 		int amount = Int32::Parse(textBox_Amount->Text);
 		ArraySearch<int>^ arr = gcnew ArraySearch<int>();
 		for (int i = 0; i < amount; i++)
-			arr->Add(0);
+			arr->Add(i);
+		int key = rand() % 100000;
 		Stopwatch^ w = gcnew Stopwatch();
 		array<System::TimeSpan>^ t = gcnew array<System::TimeSpan>(4);
 
 		w->Start();
-		//линейный поиск
+		arr->LinearSearch(key);
 		w->Stop();
 		t[0] = w->Elapsed;
 
 		w->Restart();
-		//
+		arr->BarrierSearch(key);
 		w->Stop();
 		t[1] = w->Elapsed;
 
 		w->Restart();
-		//
+		arr->BinarySearch(key);
 		w->Stop();
 		t[2] = w->Elapsed;
 
 		w->Restart();
-		//
+		//arr->BinarySearch_GoldenRatio(key);
 		w->Stop();
 		t[3] = w->Elapsed;
 
-		MessageBox::Show("Linear search completed at " + t[0].Minutes + " min " + t[0].Seconds + " s\nBarrier Search completed at " + t[1].Minutes + " min " + t[1].Seconds + " s\nBinary Search (Standard Key) completed at " + t[2].Minutes + " min " + t[2].Seconds + " s\nBinary Search (Golden Ratio Key) completed at " + t[3].Minutes + " min " + t[3].Seconds + "s", "Analysis Results", MessageBoxButtons::OK);
+		MessageBox::Show("Linear search completed at " + t[0].TotalMilliseconds + " ms\nBarrier Search completed at " + t[1].TotalMilliseconds + " ms\nBinary Search (Standard Key) completed at " + t[2].TotalMilliseconds + " ms\nBinary Search (Golden Ratio Key) completed at " + t[3].TotalMilliseconds + " ms", "Analysis Results", MessageBoxButtons::OK);
 		this->Close();
+		source->Show();
 	}
 private: System::Void textBox_Amount_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e) {
 	if (Char::IsDigit(e->KeyChar))
