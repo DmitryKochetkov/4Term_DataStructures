@@ -10,6 +10,8 @@ private:
 public:
 	ArraySearch();
 	~ArraySearch();
+	T At(int pos);
+	int Length();
 	void Add(T x, int pos);
 	void Add(T x);
 	void Remove(int pos);
@@ -60,6 +62,20 @@ template<typename T>
 inline ArraySearch<T>::~ArraySearch()
 {
 	delete[] m;
+}
+
+template<typename T>
+inline T ArraySearch<T>::At(int pos)
+{
+	if (pos < size)
+		return m[pos];
+	return T();
+}
+
+template<typename T>
+inline int ArraySearch<T>::Length()
+{
+	return size;
 }
 
 template<typename T>
