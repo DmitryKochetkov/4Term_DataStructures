@@ -157,7 +157,7 @@ namespace Practice1 {
 		t[2] = w->Elapsed;
 
 		w->Restart();
-		//arr->BinarySearch_GoldenRatio(key);
+		arr->BinarySearch_GoldenRatio(key);
 		w->Stop();
 		t[3] = w->Elapsed;
 

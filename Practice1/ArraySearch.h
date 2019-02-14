@@ -177,11 +177,11 @@ inline int ArraySearch<T>::BinarySearch_GoldenRatio(T x)
 {
 	Sort();
 	int left = 0;
-	int right = size;
+	int right = size - 1;
 	int mid;
 	while (left <= right)
 	{
-		mid = round((2 / (sqrt(5) + 1))*(right - left));
+		mid = round(left + (2 / (sqrt(5) + 1))*(right - left));
 		if (x < m[mid])
 			right = mid - 1;
 		else if (x > m[mid])
