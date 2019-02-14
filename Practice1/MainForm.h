@@ -144,6 +144,7 @@ namespace Practice1 {
 			this->listBox1->Name = L"listBox1";
 			this->listBox1->Size = System::Drawing::Size(191, 276);
 			this->listBox1->TabIndex = 4;
+			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MainForm::listBox1_SelectedIndexChanged);
 			// 
 			// ButtonAdd
 			// 
@@ -158,6 +159,7 @@ namespace Practice1 {
 			// 
 			// ButtonRemove
 			// 
+			this->ButtonRemove->Enabled = false;
 			this->ButtonRemove->Location = System::Drawing::Point(18, 64);
 			this->ButtonRemove->Margin = System::Windows::Forms::Padding(4);
 			this->ButtonRemove->Name = L"ButtonRemove";
@@ -271,6 +273,7 @@ namespace Practice1 {
 		listBox1->Items->Add(x);
 	}
 private: System::Void ButtonRemove_Click(System::Object^  sender, System::EventArgs^  e) {
+	arr->Remove(listBox1->SelectedIndex);
 	listBox1->Items->RemoveAt(listBox1->SelectedIndex);
 }
 private: System::Void ButtonLinearSearch_Click(System::Object^  sender, System::EventArgs^  e) {
@@ -333,6 +336,9 @@ private: System::Void ButtonAnalyze_Click(System::Object^  sender, System::Event
 	AnalysisForm^ form = gcnew AnalysisForm(this);
 	this->Hide();
 	form->Show();
+}
+private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
+	ButtonRemove->Enabled = listBox1->SelectedIndex != -1;
 }
 };
 }

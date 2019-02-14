@@ -151,6 +151,7 @@ namespace Practice1 {
 		w->Stop();
 		t[1] = w->Elapsed;
 
+		arr->Sort(); //should it be here or in the search functions?
 		w->Restart();
 		arr->BinarySearch(key);
 		w->Stop();

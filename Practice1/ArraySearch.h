@@ -156,7 +156,7 @@ inline int ArraySearch<T>::BarrierSearch(T x)
 template<typename T>
 inline int ArraySearch<T>::BinarySearch(T x)
 {
-	Sort();
+	//Sort();
 	int left = 0;
 	int right = size;
 	int mid;
@@ -175,7 +175,7 @@ inline int ArraySearch<T>::BinarySearch(T x)
 template<typename T>
 inline int ArraySearch<T>::BinarySearch_GoldenRatio(T x)
 {
-	Sort();
+	//Sort();
 	int left = 0;
 	int right = size - 1;
 	int mid;
