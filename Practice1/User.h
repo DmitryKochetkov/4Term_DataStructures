@@ -1,16 +1,19 @@
 #pragma once
-using namespace System;
-ref class User
+#include <iostream>
+#include <string>
+
+class User
 {
 private:
 	int id;
-	String^ login;
-	String^ password;
+	std::string login;
+	std::string password;
 public:
 	User();
-	User(int id, String^ login, String^ password);
+	User(int id, std::string login, std::string password);
 	int get_id();
-	String^ get_login();
-	String^ get_password();
+	std::string get_login();
+	std::string get_password();
+	std::string ToString();
 };
 

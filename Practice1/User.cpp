@@ -6,7 +6,7 @@ User::User()
 {
 }
 
-User::User(int id, String^ login, String^ password)
+User::User(int id, std::string login, std::string password)
 {
 	this->id = id;
 	this->login = login;
@@ -18,12 +18,17 @@ int User::get_id()
 	return id;
 }
 
-String ^ User::get_login()
+std::string User::get_login()
 {
 	return login;
 }
 
-String ^ User::get_password()
+std::string User::get_password()
 {
 	return password;
+}
+
+std::string User::ToString()
+{
+	return id.ToString() + " " + login + " " + password;
 }
