@@ -1,9 +1,13 @@
 #include "User.h"
 
 
-
 User::User()
 {
+}
+
+User::User(int id)
+{
+	this->id = id;
 }
 
 User::User(int id, std::string login, std::string password)
@@ -30,5 +34,5 @@ std::string User::get_password()
 
 std::string User::ToString()
 {
-	return id.ToString() + " " + login + " " + password;
+	return Practice1::SystemToStd(id.ToString()) + " " + login + " " + password;
 }

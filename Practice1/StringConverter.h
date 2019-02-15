@@ -1,21 +1,20 @@
 #pragma once
 #include <iostream>
 
-using namespace System;
-
 namespace Practice1 {
 
-	std::string SystemToStd(String ^s)
+	using namespace System;
+
+	static std::string SystemToStd(System::String ^s)
 	{
-		using namespace Runtime::InteropServices;
+		using namespace System::Runtime::InteropServices;
 		const char* ptr = (const char*)(Marshal::StringToHGlobalAnsi(s)).ToPointer();
 		return std::string(ptr);
 	}
 
-	String^ StdToSystem(std::string s)
+	static System::String^ StdToSystem(std::string s)
 	{
-		String^ res = gcnew String(s.c_str());
+		System::String^ res = gcnew System::String(s.c_str());
 		return res;
 	}
-
 }
