@@ -1,6 +1,9 @@
 #pragma once
+#include "StringConverter.h"
+#include "User.h"
 #include "ArraySearch.h"
 #include "AnalysisForm.h"
+#include "UserForm.h"
 #include <cstdlib>
 
 namespace Practice1 {
@@ -18,11 +21,11 @@ namespace Practice1 {
 	public ref class MainForm : public System::Windows::Forms::Form
 	{
 	public:
-		ArraySearch<int>^ arr;
+		ArraySearch<User>^ arr;
 		MainForm(void)
 		{
 			InitializeComponent();
-			arr = gcnew ArraySearch<int>();
+			arr = gcnew ArraySearch<User>();
 			//
 			//TODO: Add the constructor code here
 			//
@@ -57,6 +60,10 @@ namespace Practice1 {
 	private: System::Windows::Forms::GroupBox^  groupBox2;
 	private: System::Windows::Forms::Label^  label2;
 	private: System::Windows::Forms::TextBox^  textBox1;
+
+
+
+
 
 
 
@@ -99,7 +106,7 @@ namespace Practice1 {
 			this->label1->Location = System::Drawing::Point(108, 24);
 			this->label1->Margin = System::Windows::Forms::Padding(4, 0, 4, 0);
 			this->label1->Name = L"label1";
-			this->label1->Size = System::Drawing::Size(47, 17);
+			this->label1->Size = System::Drawing::Size(54, 20);
 			this->label1->TabIndex = 0;
 			this->label1->Text = L"Array";
 			// 
@@ -139,10 +146,10 @@ namespace Practice1 {
 			// listBox1
 			// 
 			this->listBox1->FormattingEnabled = true;
-			this->listBox1->ItemHeight = 17;
+			this->listBox1->ItemHeight = 20;
 			this->listBox1->Location = System::Drawing::Point(43, 56);
 			this->listBox1->Name = L"listBox1";
-			this->listBox1->Size = System::Drawing::Size(191, 276);
+			this->listBox1->Size = System::Drawing::Size(191, 264);
 			this->listBox1->TabIndex = 4;
 			this->listBox1->SelectedIndexChanged += gcnew System::EventHandler(this, &MainForm::listBox1_SelectedIndexChanged);
 			// 
@@ -223,7 +230,7 @@ namespace Practice1 {
 			// 
 			this->textBox1->Location = System::Drawing::Point(69, 25);
 			this->textBox1->Name = L"textBox1";
-			this->textBox1->Size = System::Drawing::Size(135, 23);
+			this->textBox1->Size = System::Drawing::Size(135, 27);
 			this->textBox1->TabIndex = 10;
 			// 
 			// label2
@@ -231,13 +238,13 @@ namespace Practice1 {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(15, 28);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(48, 17);
+			this->label2->Size = System::Drawing::Size(31, 20);
 			this->label2->TabIndex = 9;
-			this->label2->Text = L"Value:";
+			this->label2->Text = L"ID:";
 			// 
 			// MainForm
 			// 
-			this->AutoScaleDimensions = System::Drawing::SizeF(8, 17);
+			this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(546, 428);
 			this->Controls->Add(this->groupBox2);
@@ -264,13 +271,12 @@ namespace Practice1 {
 		{
 			listBox1->Items->Clear();
 			for (int i = 0; i < arr->Length(); i++)
-				listBox1->Items->Add(arr->At(i));
+				listBox1->Items->Add(StdToSystem(arr->At(i).ToString()));
 		}
 
 	private: System::Void ButtonAdd_Click(System::Object^  sender, System::EventArgs^  e) {
-		int x = rand() % 100;
-		arr->Add(x);
-		listBox1->Items->Add(x);
+		UserForm^ form = gcnew UserForm(arr, listBox1);
+		form->Show();
 	}
 private: System::Void ButtonRemove_Click(System::Object^  sender, System::EventArgs^  e) {
 	arr->Remove(listBox1->SelectedIndex);
@@ -279,7 +285,8 @@ private: System::Void ButtonRemove_Click(System::Object^  sender, System::EventA
 private: System::Void ButtonLinearSearch_Click(System::Object^  sender, System::EventArgs^  e) {
 	int x;
 	Int32::TryParse(textBox1->Text, x);
-	int res = arr->LinearSearch(x);
+
+	int res = arr->LinearSearch(User(x));
 	if (res == -1)
 		MessageBox::Show("Element does not exist", "Linear Search Result", MessageBoxButtons::OK);
 	else
@@ -296,7 +303,7 @@ private: System::Void ButtonBarrierSearch_Click(System::Object^  sender, System:
 		MessageBox::Show("Element does not exist", "Barrier Search Result", MessageBoxButtons::OK);
 	else
 	{
-		MessageBox::Show("Position: " + arr->BarrierSearch(x).ToString(), "Barrier Search Result", MessageBoxButtons::OK);
+		MessageBox::Show("Position: " + res.ToString(), "Barrier Search Result", MessageBoxButtons::OK);
 		listBox1->SelectedIndex = res;
 	}
 }
@@ -312,7 +319,7 @@ private: System::Void ButtonBinarySearch_Click(System::Object^  sender, System::
 		MessageBox::Show("Element does not exist", "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
 	else
 	{
-		MessageBox::Show("Position: " + arr->BinarySearch(x).ToString(), "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
+		MessageBox::Show("Position: " + res.ToString(), "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
 		listBox1->SelectedIndex = res;
 	}
 }
@@ -328,7 +335,7 @@ private: System::Void ButtonGoldenRatioSearch_Click(System::Object^  sender, Sys
 		MessageBox::Show("Element does not exist", "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
 	else
 	{
-		MessageBox::Show("Position: " + arr->BinarySearch_GoldenRatio(x).ToString(), "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
+		MessageBox::Show("Position: " + res.ToString(), "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
 		listBox1->SelectedIndex = res;
 	}
 }
@@ -340,5 +347,6 @@ private: System::Void ButtonAnalyze_Click(System::Object^  sender, System::Event
 private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, System::EventArgs^  e) {
 	ButtonRemove->Enabled = listBox1->SelectedIndex != -1;
 }
+
 };
 }
