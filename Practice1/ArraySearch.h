@@ -1,6 +1,6 @@
 #pragma once
 #include <math.h>
-template <typename T> 
+template <class T> 
 ref class ArraySearch
 {
 private:
