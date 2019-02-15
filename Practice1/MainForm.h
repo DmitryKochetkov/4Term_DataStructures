@@ -112,6 +112,7 @@ namespace Practice1 {
 			// 
 			// ButtonLinearSearch
 			// 
+			this->ButtonLinearSearch->Enabled = false;
 			this->ButtonLinearSearch->Location = System::Drawing::Point(18, 60);
 			this->ButtonLinearSearch->Margin = System::Windows::Forms::Padding(4);
 			this->ButtonLinearSearch->Name = L"ButtonLinearSearch";
@@ -123,6 +124,7 @@ namespace Practice1 {
 			// 
 			// ButtonBarrierSearch
 			// 
+			this->ButtonBarrierSearch->Enabled = false;
 			this->ButtonBarrierSearch->Location = System::Drawing::Point(18, 110);
 			this->ButtonBarrierSearch->Margin = System::Windows::Forms::Padding(4);
 			this->ButtonBarrierSearch->Name = L"ButtonBarrierSearch";
@@ -134,6 +136,7 @@ namespace Practice1 {
 			// 
 			// ButtonBinarySearch
 			// 
+			this->ButtonBinarySearch->Enabled = false;
 			this->ButtonBinarySearch->Location = System::Drawing::Point(18, 159);
 			this->ButtonBinarySearch->Margin = System::Windows::Forms::Padding(4);
 			this->ButtonBinarySearch->Name = L"ButtonBinarySearch";
@@ -189,6 +192,7 @@ namespace Practice1 {
 			// 
 			// ButtonGoldenRatioSearch
 			// 
+			this->ButtonGoldenRatioSearch->Enabled = false;
 			this->ButtonGoldenRatioSearch->Location = System::Drawing::Point(18, 203);
 			this->ButtonGoldenRatioSearch->Margin = System::Windows::Forms::Padding(4);
 			this->ButtonGoldenRatioSearch->Name = L"ButtonGoldenRatioSearch";
@@ -232,6 +236,7 @@ namespace Practice1 {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(135, 27);
 			this->textBox1->TabIndex = 10;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MainForm::textBox1_TextChanged);
 			// 
 			// label2
 			// 
@@ -348,5 +353,11 @@ private: System::Void listBox1_SelectedIndexChanged(System::Object^  sender, Sys
 	ButtonRemove->Enabled = listBox1->SelectedIndex != -1;
 }
 
+private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	ButtonLinearSearch->Enabled = !(textBox1->Text == "");
+	ButtonBarrierSearch->Enabled = !(textBox1->Text == "");
+	ButtonBinarySearch->Enabled = !(textBox1->Text == "");
+	ButtonGoldenRatioSearch->Enabled = !(textBox1->Text == "");
+}
 };
 }
