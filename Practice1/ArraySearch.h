@@ -27,7 +27,7 @@ inline void ArraySearch<T>::quicksort(int l, int r)
 {
 	int i = l;
 	int j = r;
-	int mid = m[(l + r) / 2 ];
+	T mid = m[(l + r) / 2 ];
 
 	do {
 		while (m[i] < mid) i++;
@@ -36,7 +36,7 @@ inline void ArraySearch<T>::quicksort(int l, int r)
 		if (i <= j) {
 			if (m[i] > m[j])
 			{
-				int temp = m[i];
+				T temp = m[i];
 				m[i] = m[j];
 				m[j] = temp;
 			}
