@@ -316,6 +316,7 @@ private: System::Void ButtonBinarySearch_Click(System::Object^  sender, System::
 	int x;
 	Int32::TryParse(textBox1->Text, x);
 	System::Windows::Forms::DialogResult result = MessageBox::Show("Warning: array will be sorted", "Binary Search", MessageBoxButtons::OKCancel);
+	arr->Sort();
 	if (result == System::Windows::Forms::DialogResult::Cancel)
 		return;
 	int res = arr->BinarySearch(x);
@@ -332,6 +333,7 @@ private: System::Void ButtonGoldenRatioSearch_Click(System::Object^  sender, Sys
 	int x;
 	Int32::TryParse(textBox1->Text, x);
 	System::Windows::Forms::DialogResult result = MessageBox::Show("Warning: array will be sorted", "Binary Search", MessageBoxButtons::OKCancel);
+	arr->Sort();
 	if (result == System::Windows::Forms::DialogResult::Cancel)
 		return;
 	int res = arr->BinarySearch_GoldenRatio(x);
