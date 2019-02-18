@@ -232,7 +232,7 @@ namespace Practice1 {
 			// 
 			// textBox1
 			// 
-			this->textBox1->Location = System::Drawing::Point(69, 25);
+			this->textBox1->Location = System::Drawing::Point(75, 25);
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(135, 27);
 			this->textBox1->TabIndex = 10;
@@ -243,9 +243,9 @@ namespace Practice1 {
 			this->label2->AutoSize = true;
 			this->label2->Location = System::Drawing::Point(15, 28);
 			this->label2->Name = L"label2";
-			this->label2->Size = System::Drawing::Size(31, 20);
+			this->label2->Size = System::Drawing::Size(55, 20);
 			this->label2->TabIndex = 9;
-			this->label2->Text = L"ID:";
+			this->label2->Text = L"Login:";
 			// 
 			// MainForm
 			// 
@@ -288,33 +288,32 @@ private: System::Void ButtonRemove_Click(System::Object^  sender, System::EventA
 	listBox1->Items->RemoveAt(listBox1->SelectedIndex);
 }
 private: System::Void ButtonLinearSearch_Click(System::Object^  sender, System::EventArgs^  e) {
-	int x;
-	Int32::TryParse(textBox1->Text, x);
-
-	int res = arr->LinearSearch(User(x));
+	std::string x;
+	x = SystemToStd(textBox1->Text);
+	int res = arr->LinearSearch(x);
 	if (res == -1)
-		MessageBox::Show("Element does not exist", "Linear Search Result", MessageBoxButtons::OK);
+		MessageBox::Show("User does not exist", "Linear Search Result", MessageBoxButtons::OK);
 	else
 	{
-		MessageBox::Show("Position: " + res.ToString(), "Linear Search Result", MessageBoxButtons::OK);
+		MessageBox::Show("ID: " + res.ToString(), "Linear Search Result", MessageBoxButtons::OK);
 		listBox1->SelectedIndex = res;
 	}
 }
 private: System::Void ButtonBarrierSearch_Click(System::Object^  sender, System::EventArgs^  e) {
-	int x;
-	Int32::TryParse(textBox1->Text, x);
+	std::string x;
+	x = SystemToStd(textBox1->Text);
 	int res = arr->BarrierSearch(x);
 	if (res == -1)
-		MessageBox::Show("Element does not exist", "Barrier Search Result", MessageBoxButtons::OK);
+		MessageBox::Show("User does not exist", "Barrier Search Result", MessageBoxButtons::OK);
 	else
 	{
-		MessageBox::Show("Position: " + res.ToString(), "Barrier Search Result", MessageBoxButtons::OK);
+		MessageBox::Show("ID: " + res.ToString(), "Barrier Search Result", MessageBoxButtons::OK);
 		listBox1->SelectedIndex = res;
 	}
 }
 private: System::Void ButtonBinarySearch_Click(System::Object^  sender, System::EventArgs^  e) {
-	int x;
-	Int32::TryParse(textBox1->Text, x);
+	std::string x;
+	x = SystemToStd(textBox1->Text);
 	System::Windows::Forms::DialogResult result = MessageBox::Show("Warning: array will be sorted", "Binary Search", MessageBoxButtons::OKCancel);
 	arr->Sort();
 	if (result == System::Windows::Forms::DialogResult::Cancel)
@@ -322,16 +321,16 @@ private: System::Void ButtonBinarySearch_Click(System::Object^  sender, System::
 	int res = arr->BinarySearch(x);
 	DataRefresh();
 	if (res == -1)
-		MessageBox::Show("Element does not exist", "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
+		MessageBox::Show("User does not exist", "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
 	else
 	{
-		MessageBox::Show("Position: " + res.ToString(), "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
+		MessageBox::Show("ID: " + res.ToString(), "Binary Search (Standard Key) Result", MessageBoxButtons::OK);
 		listBox1->SelectedIndex = res;
 	}
 }
 private: System::Void ButtonGoldenRatioSearch_Click(System::Object^  sender, System::EventArgs^  e) {
-	int x;
-	Int32::TryParse(textBox1->Text, x);
+	std::string x;
+	x = SystemToStd(textBox1->Text);
 	System::Windows::Forms::DialogResult result = MessageBox::Show("Warning: array will be sorted", "Binary Search", MessageBoxButtons::OKCancel);
 	arr->Sort();
 	if (result == System::Windows::Forms::DialogResult::Cancel)
@@ -339,10 +338,10 @@ private: System::Void ButtonGoldenRatioSearch_Click(System::Object^  sender, Sys
 	int res = arr->BinarySearch_GoldenRatio(x);
 	DataRefresh();
 	if (res == -1)
-		MessageBox::Show("Element does not exist", "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
+		MessageBox::Show("User does not exist", "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
 	else
 	{
-		MessageBox::Show("Position: " + res.ToString(), "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
+		MessageBox::Show("ID: " + res.ToString(), "Binary Search (Golden Ratio Key) Result", MessageBoxButtons::OK);
 		listBox1->SelectedIndex = res;
 	}
 }

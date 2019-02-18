@@ -14,53 +14,51 @@ public:
 	User();
 	User(int id);
 	User(int id, std::string login, std::string password);
+	User(std::string login);
 	int get_id();
 	std::string get_login();
 	std::string get_password();
 	std::string ToString();
-	bool check_id(int x)
-	{
-		return (id == x);
-	}
+	
 
 	const bool operator > (const User &u)
 	{
-		return(this->id > u.id);
+		return(this->login > u.login);
 	}
 
-	const bool operator > (const int &u)
+	const bool operator > (const std::string &u)
 	{
-		return(this->id > u);
+		return(this->login > u);
 	}
 
-	const bool operator < (const int &u)
+	const bool operator < (const std::string &u)
 	{
-		return(this->id < u);
+		return(this->login < u);
 	}
 
 	const bool operator < (const User &u)
 	{
-		return(this->id < u.id);
+		return(this->login < u.login);
 	}
 
 	const bool operator == (const User &u)
 	{
-		return(this->id == u.id);
+		return(this->login == u.login);
 	}
 
-	const bool operator == (const int &u)
+	const bool operator == (const std::string &u)
 	{
-		return(this->id == u);
+		return(this->login == u);
 	}
 
 	const bool operator != (const User &u)
 	{
-		return(this->id != u.id);
+		return(this->login != u.login);
 	}
 
-	const bool operator != (const int &u)
+	const bool operator != (const std::string &u)
 	{
-		return(this->id != u);
+		return(this->login != u);
 	}
 };
 

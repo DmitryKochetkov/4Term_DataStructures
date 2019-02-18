@@ -10,6 +10,12 @@ User::User(int id)
 	this->id = id;
 }
 
+User::User(std::string login)
+{
+	this->login = login;
+}
+
+
 User::User(int id, std::string login, std::string password)
 {
 	this->id = id;
