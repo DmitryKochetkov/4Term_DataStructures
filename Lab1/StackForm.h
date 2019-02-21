@@ -29,6 +29,8 @@ namespace Lab1 {
 
 
 	private: System::Windows::Forms::Button^  SwapButton;
+	private: System::Windows::Forms::TextBox^  textBox1;
+	private: System::Windows::Forms::TextBox^  textBox2;
 
 			 Stack^ s2 = gcnew Stack();
 	public:
@@ -74,6 +76,8 @@ namespace Lab1 {
 			this->Pop1Button = (gcnew System::Windows::Forms::Button());
 			this->Pop2Button = (gcnew System::Windows::Forms::Button());
 			this->SwapButton = (gcnew System::Windows::Forms::Button());
+			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
+			this->textBox2 = (gcnew System::Windows::Forms::TextBox());
 			this->SuspendLayout();
 			// 
 			// listBox1
@@ -124,6 +128,7 @@ namespace Lab1 {
 			this->Push1Button->TabIndex = 4;
 			this->Push1Button->Text = L"Push";
 			this->Push1Button->UseVisualStyleBackColor = true;
+			this->Push1Button->Click += gcnew System::EventHandler(this, &StackForm::Push1Button_Click);
 			// 
 			// Push2Button
 			// 
@@ -133,6 +138,7 @@ namespace Lab1 {
 			this->Push2Button->TabIndex = 5;
 			this->Push2Button->Text = L"Push";
 			this->Push2Button->UseVisualStyleBackColor = true;
+			this->Push2Button->Click += gcnew System::EventHandler(this, &StackForm::Push2Button_Click);
 			// 
 			// Pop1Button
 			// 
@@ -142,6 +148,7 @@ namespace Lab1 {
 			this->Pop1Button->TabIndex = 6;
 			this->Pop1Button->Text = L"Pop";
 			this->Pop1Button->UseVisualStyleBackColor = true;
+			this->Pop1Button->Click += gcnew System::EventHandler(this, &StackForm::Pop1Button_Click);
 			// 
 			// Pop2Button
 			// 
@@ -151,6 +158,7 @@ namespace Lab1 {
 			this->Pop2Button->TabIndex = 7;
 			this->Pop2Button->Text = L"Pop";
 			this->Pop2Button->UseVisualStyleBackColor = true;
+			this->Pop2Button->Click += gcnew System::EventHandler(this, &StackForm::Pop2Button_Click);
 			// 
 			// SwapButton
 			// 
@@ -160,12 +168,31 @@ namespace Lab1 {
 			this->SwapButton->TabIndex = 8;
 			this->SwapButton->Text = L"Swap elements";
 			this->SwapButton->UseVisualStyleBackColor = true;
+			this->SwapButton->Click += gcnew System::EventHandler(this, &StackForm::SwapButton_Click);
+			// 
+			// textBox1
+			// 
+			this->textBox1->Location = System::Drawing::Point(67, 322);
+			this->textBox1->Name = L"textBox1";
+			this->textBox1->Size = System::Drawing::Size(89, 27);
+			this->textBox1->TabIndex = 9;
+			this->textBox1->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &StackForm::textBox1_KeyPress);
+			// 
+			// textBox2
+			// 
+			this->textBox2->Location = System::Drawing::Point(271, 322);
+			this->textBox2->Name = L"textBox2";
+			this->textBox2->Size = System::Drawing::Size(89, 27);
+			this->textBox2->TabIndex = 10;
+			this->textBox2->KeyPress += gcnew System::Windows::Forms::KeyPressEventHandler(this, &StackForm::textBox2_KeyPress);
 			// 
 			// StackForm
 			// 
 			this->AutoScaleDimensions = System::Drawing::SizeF(10, 20);
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(517, 482);
+			this->Controls->Add(this->textBox2);
+			this->Controls->Add(this->textBox1);
 			this->Controls->Add(this->SwapButton);
 			this->Controls->Add(this->Pop2Button);
 			this->Controls->Add(this->Pop1Button);
@@ -188,5 +215,48 @@ namespace Lab1 {
 
 		}
 #pragma endregion
-	};
+	private: System::Void Push1Button_Click(System::Object^  sender, System::EventArgs^  e) {
+		int x = Int32::Parse(textBox1->Text);
+		s1->Push(x);
+		listBox1->Items->Add(x);
+		textBox1->Text = "";
+	}
+private: System::Void Push2Button_Click(System::Object^  sender, System::EventArgs^  e) {
+	int x = Int32::Parse(textBox2->Text);
+	s2->Push(x);
+	listBox2->Items->Add(x);
+	textBox2->Text = "";
+}
+private: System::Void Pop1Button_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (s1->Count != 0)
+	{
+		s1->Pop();
+		listBox1->Items->RemoveAt(listBox1->Items->Count - 1);
+	}
+}
+private: System::Void Pop2Button_Click(System::Object^  sender, System::EventArgs^  e) {
+	if (s2->Count != 0)
+	{
+		s2->Pop();
+		listBox2->Items->RemoveAt(listBox2->Items->Count - 1);
+	}
+}
+private: System::Void SwapButton_Click(System::Object^  sender, System::EventArgs^  e) {
+	
+}
+private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e) {
+	if (Char::IsDigit(e->KeyChar))
+		return;
+	if (e->KeyChar == (char)Keys::Back)
+		return;
+	e->Handled = true;
+}
+private: System::Void textBox2_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e) {
+	if (Char::IsDigit(e->KeyChar))
+		return;
+	if (e->KeyChar == (char)Keys::Back)
+		return;
+	e->Handled = true;
+}
+};
 }
