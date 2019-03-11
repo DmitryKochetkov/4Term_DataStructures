@@ -16,7 +16,7 @@ int BruteForce(String^ s, String^ sub)
 	return res;
 }
 
-int BruteForce(String^ s, String^ sub, int& it)
+int BruteForce(String^ s, String^ sub, int& it) // spaces and register?
 {
 	it = 0; //?
 	int res = -1;

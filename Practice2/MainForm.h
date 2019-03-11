@@ -72,6 +72,7 @@ namespace Practice2 {
 			this->richTextBox1->Size = System::Drawing::Size(502, 136);
 			this->richTextBox1->TabIndex = 0;
 			this->richTextBox1->Text = L"";
+			this->richTextBox1->TextChanged += gcnew System::EventHandler(this, &MainForm::richTextBox1_TextChanged);
 			// 
 			// textBox1
 			// 
@@ -79,6 +80,7 @@ namespace Practice2 {
 			this->textBox1->Name = L"textBox1";
 			this->textBox1->Size = System::Drawing::Size(427, 22);
 			this->textBox1->TabIndex = 1;
+			this->textBox1->TextChanged += gcnew System::EventHandler(this, &MainForm::textBox1_TextChanged);
 			// 
 			// label1
 			// 
@@ -100,6 +102,7 @@ namespace Practice2 {
 			// 
 			// Search_Button
 			// 
+			this->Search_Button->Enabled = false;
 			this->Search_Button->Location = System::Drawing::Point(204, 302);
 			this->Search_Button->Name = L"Search_Button";
 			this->Search_Button->Size = System::Drawing::Size(156, 38);
@@ -143,5 +146,11 @@ namespace Practice2 {
 		int out[4];
 		MessageBox::Show("Brute Force Search: \n\tPosition: " + BruteForce(richTextBox1->Text, textBox1->Text, out[0]) + "\n\tIterations: " + out[0] + "\nKMP Search: \n\tPosition: " + KMP(richTextBox1->Text, textBox1->Text, out[1]) + "\n\tIterations: " + out[1] + "\nBM Search: \n\tPosition: " + BM(richTextBox1->Text, textBox1->Text, out[2]) + "\n\tIterations: " + out[2] + "\nKMP + BM Search: \n\tPosition: " + Perfect(richTextBox1->Text, textBox1->Text, out[3]) + "\n\tIterations: " + out[3], "Result");
 	}
+private: System::Void richTextBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Search_Button->Enabled = richTextBox1->Text != "" && textBox1->Text != "";
+}
+private: System::Void textBox1_TextChanged(System::Object^  sender, System::EventArgs^  e) {
+	Search_Button->Enabled = richTextBox1->Text != "" && textBox1->Text != "";
+}
 };
 }
