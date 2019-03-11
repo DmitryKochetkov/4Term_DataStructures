@@ -39,7 +39,8 @@ namespace Practice2 {
 	private: System::Windows::Forms::TextBox^  textBox1;
 	private: System::Windows::Forms::Label^  label1;
 	private: System::Windows::Forms::Label^  label2;
-	private: System::Windows::Forms::Button^  button1;
+	private: System::Windows::Forms::Button^  Search_Button;
+
 	private: System::Windows::Forms::CheckBox^  checkBox1;
 
 	private:
@@ -59,7 +60,7 @@ namespace Practice2 {
 			this->textBox1 = (gcnew System::Windows::Forms::TextBox());
 			this->label1 = (gcnew System::Windows::Forms::Label());
 			this->label2 = (gcnew System::Windows::Forms::Label());
-			this->button1 = (gcnew System::Windows::Forms::Button());
+			this->Search_Button = (gcnew System::Windows::Forms::Button());
 			this->checkBox1 = (gcnew System::Windows::Forms::CheckBox());
 			this->SuspendLayout();
 			// 
@@ -96,14 +97,15 @@ namespace Practice2 {
 			this->label2->TabIndex = 3;
 			this->label2->Text = L"Substring:";
 			// 
-			// button1
+			// Search_Button
 			// 
-			this->button1->Location = System::Drawing::Point(204, 302);
-			this->button1->Name = L"button1";
-			this->button1->Size = System::Drawing::Size(156, 38);
-			this->button1->TabIndex = 4;
-			this->button1->Text = L"Search";
-			this->button1->UseVisualStyleBackColor = true;
+			this->Search_Button->Location = System::Drawing::Point(204, 302);
+			this->Search_Button->Name = L"Search_Button";
+			this->Search_Button->Size = System::Drawing::Size(156, 38);
+			this->Search_Button->TabIndex = 4;
+			this->Search_Button->Text = L"Search";
+			this->Search_Button->UseVisualStyleBackColor = true;
+			this->Search_Button->Click += gcnew System::EventHandler(this, &MainForm::Search_Button_Click);
 			// 
 			// checkBox1
 			// 
@@ -121,7 +123,7 @@ namespace Practice2 {
 			this->AutoScaleMode = System::Windows::Forms::AutoScaleMode::Font;
 			this->ClientSize = System::Drawing::Size(564, 370);
 			this->Controls->Add(this->checkBox1);
-			this->Controls->Add(this->button1);
+			this->Controls->Add(this->Search_Button);
 			this->Controls->Add(this->label2);
 			this->Controls->Add(this->label1);
 			this->Controls->Add(this->textBox1);
@@ -136,5 +138,8 @@ namespace Practice2 {
 
 		}
 #pragma endregion
-	};
+	private: System::Void Search_Button_Click(System::Object^  sender, System::EventArgs^  e) {
+		MessageBox::Show("Brute Force Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0 + "\nKMP Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0 + "\nBM Force Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0 + "\nKMP + BM Force Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0, "Result");
+	}
+};
 }
