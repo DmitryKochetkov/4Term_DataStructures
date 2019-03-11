@@ -1,4 +1,5 @@
 #pragma once
+#include "StringSearching.h"
 
 namespace Practice2 {
 
@@ -139,7 +140,7 @@ namespace Practice2 {
 		}
 #pragma endregion
 	private: System::Void Search_Button_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("Brute Force Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0 + "\nKMP Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0 + "\nBM Force Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0 + "\nKMP + BM Force Search: \n\tPosition: " + "kek" + "\n\tIterations: " + 0, "Result");
+		MessageBox::Show("Brute Force Search: \n\tPosition: " + BruteForce() + "\n\tIterations: " + "kek" + "\nKMP Search: \n\tPosition: " + KMP() + "\n\tIterations: " + "kek" + "\nBM Search: \n\tPosition: " + BM() + "\n\tIterations: " + "kek" + "\nKMP + BM Search: \n\tPosition: " + Perfect() + "\n\tIterations: " + "kek", "Result");
 	}
 };
 }
