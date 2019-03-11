@@ -1,21 +1,23 @@
 #include "StringSearching.h"
 
-int BruteForce()
+using namespace System;
+
+int BruteForce(String^ s, String^ sub)
 {
 	return 0;
 }
 
-int KMP()
+int KMP(String^ s, String^ sub)
 {
 	return 0;
 }
 
-int BM()
+int BM(String^ s, String^ sub)
 {
 	return 0;
 }
 
-int Perfect()
+int Perfect(String^ s, String^ sub)
 {
 	return 0;
 }

@@ -1,8 +1,8 @@
 #pragma once
 
-using namespace std;
+using namespace System;
 
-int BruteForce();
-int KMP();
-int BM();
-int Perfect();
+int BruteForce(String^ s, String^ sub);
+int KMP(String^ s, String^ sub);
+int BM(String^ s, String^ sub);
+int Perfect(String^ s, String^ sub);

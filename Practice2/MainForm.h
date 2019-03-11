@@ -140,7 +140,7 @@ namespace Practice2 {
 		}
 #pragma endregion
 	private: System::Void Search_Button_Click(System::Object^  sender, System::EventArgs^  e) {
-		MessageBox::Show("Brute Force Search: \n\tPosition: " + BruteForce() + "\n\tIterations: " + "kek" + "\nKMP Search: \n\tPosition: " + KMP() + "\n\tIterations: " + "kek" + "\nBM Search: \n\tPosition: " + BM() + "\n\tIterations: " + "kek" + "\nKMP + BM Search: \n\tPosition: " + Perfect() + "\n\tIterations: " + "kek", "Result");
+		MessageBox::Show("Brute Force Search: \n\tPosition: " + BruteForce(richTextBox1->Text, textBox1->Text) + "\n\tIterations: " + "kek" + "\nKMP Search: \n\tPosition: " + KMP(richTextBox1->Text, textBox1->Text) + "\n\tIterations: " + "kek" + "\nBM Search: \n\tPosition: " + BM(richTextBox1->Text, textBox1->Text) + "\n\tIterations: " + "kek" + "\nKMP + BM Search: \n\tPosition: " + Perfect(richTextBox1->Text, textBox1->Text) + "\n\tIterations: " + "kek", "Result");
 	}
 };
 }
