@@ -218,31 +218,34 @@ namespace Lab1 {
 	private: System::Void Push1Button_Click(System::Object^  sender, System::EventArgs^  e) {
 		int x = Int32::Parse(textBox1->Text);
 		s1->Push(x);
-		listBox1->Items->Add(x);
+		listBox1->Items->Insert(0, x);
 		textBox1->Text = "";
 	}
 private: System::Void Push2Button_Click(System::Object^  sender, System::EventArgs^  e) {
 	int x = Int32::Parse(textBox2->Text);
 	s2->Push(x);
-	listBox2->Items->Add(x);
+	listBox2->Items->Insert(0, x);
 	textBox2->Text = "";
 }
 private: System::Void Pop1Button_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (s1->Count != 0)
 	{
 		s1->Pop();
-		listBox1->Items->RemoveAt(listBox1->Items->Count - 1);
+		listBox1->Items->RemoveAt(0);
 	}
 }
 private: System::Void Pop2Button_Click(System::Object^  sender, System::EventArgs^  e) {
 	if (s2->Count != 0)
 	{
 		s2->Pop();
-		listBox2->Items->RemoveAt(listBox2->Items->Count - 1);
+		listBox2->Items->RemoveAt(0);
 	}
 }
 private: System::Void SwapButton_Click(System::Object^  sender, System::EventArgs^  e) {
-	
+	Stack^ s = s1;
+	s1 = s2;
+	s2 = s;
+	refresh();
 }
 private: System::Void textBox1_KeyPress(System::Object^  sender, System::Windows::Forms::KeyPressEventArgs^  e) {
 	if (Char::IsDigit(e->KeyChar))
@@ -258,5 +261,15 @@ private: System::Void textBox2_KeyPress(System::Object^  sender, System::Windows
 		return;
 	e->Handled = true;
 }
+
+		 void refresh()
+		 {
+			 listBox1->Items->Clear();
+			 listBox2->Items->Clear();
+			 while (s1->Count > 0)
+				 listBox1->Items->Add(s1->Pop());
+			 while (s2->Count > 0)
+				 listBox2->Items->Add(s2->Pop());
+		 }
 };
 }
